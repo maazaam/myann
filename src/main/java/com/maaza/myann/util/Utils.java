@@ -44,7 +44,7 @@ public final class Utils {
     }
 
     public static final void print(final String str) {
-        System.out.printf("%n----- %s -----%n", str);
+        System.out.printf("%n----- %s -----%n%n", str);
     }
 
     public static final void print(final String str, final float val) {
