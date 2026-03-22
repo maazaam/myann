@@ -1,5 +1,6 @@
 package com.maaza.myann;
 
+import com.maaza.myann.acti.Activators;
 import com.maaza.myann.init.Initializers;
 import com.maaza.myann.util.Utils;
 
@@ -44,8 +45,22 @@ public final class Test {
         Utils.print("rndn", out);
     }
 
+    private static final void acti() {
+        Utils.print("acti");
+        final float val = 1.0f;
+        Utils.print("lelu-acti", Activators.lelu().acti(val));
+        Utils.print("lelu-deri", Activators.lelu().deri(val));
+        Utils.print("relu-acti", Activators.relu().acti(val));
+        Utils.print("relu-deri", Activators.relu().deri(val));
+        Utils.print("sigm-acti", Activators.sigm().acti(val));
+        Utils.print("sigm-deri", Activators.sigm().deri(val));
+        Utils.print("tanh-acti", Activators.tanh().acti(val));
+        Utils.print("tanh-deri", Activators.tanh().deri(val));
+    }
+
     public static final void main(final String[] args) {
         util();
         init();
+        acti();
     }
 }
