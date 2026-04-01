@@ -9,6 +9,6 @@ public final class TanhActivator implements Activator {
 
     @Override
     public final float deri(final float val) {
-        return 1.0f - (float) Math.pow(val, 2.0f);
+        return 1.0f - val * val;
     }
 }

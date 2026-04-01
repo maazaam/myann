@@ -10,7 +10,8 @@ public final class FillInitializer implements Initializer {
 
     @Override
     public final void init(final float[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+        final int len = arr.length;
+        for (int i = 0; i < len; i++) {
             arr[i] = this.val;
         }
     }

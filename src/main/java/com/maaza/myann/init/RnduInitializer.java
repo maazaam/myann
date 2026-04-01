@@ -25,7 +25,8 @@ public final class RnduInitializer implements Initializer {
 
     @Override
     public final void init(final float[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+        final int len = arr.length;
+        for (int i = 0; i < len; i++) {
             arr[i] = (float) this.rng.nextDouble(this.min, this.max);
         }
     }

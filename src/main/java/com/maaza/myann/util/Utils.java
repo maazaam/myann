@@ -6,40 +6,45 @@ public final class Utils {
     }
 
     public static final float min(final float[] arr) {
+        final int len = arr.length;
         float min = arr[0];
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < len; i++) {
             min = Math.min(min, arr[i]);
         }
         return min;
     }
 
     public static final float max(final float[] arr) {
+        final int len = arr.length;
         float max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < len; i++) {
             max = Math.max(max, arr[i]);
         }
         return max;
     }
 
     public static final float avg(final float[] arr) {
+        final int len = arr.length;
         float sum = 0.0f;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < len; i++) {
             sum += arr[i];
         }
-        return sum / arr.length;
+        return sum / len;
     }
 
     public static final float sdv(final float[] arr) {
+        final int len = arr.length;
         float sum = 0.0f;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < len; i++) {
             sum += arr[i];
         }
-        final float avg = sum / arr.length;
+        final float avg = sum / len;
         float dev = 0.0f;
-        for (int i = 0; i < arr.length; i++) {
-            dev += Math.pow(arr[i] - avg, 2.0f);
+        for (int i = 0; i < len; i++) {
+            final float dif = arr[i] - avg;
+            dev += dif * dif;
         }
-        final float var = dev / arr.length;
+        final float var = dev / len;
         return (float) Math.sqrt(var);
     }
 
@@ -52,8 +57,9 @@ public final class Utils {
     }
 
     public static final void print(final String str, final float[] arr) {
-        System.out.printf("%s[%d] = { ", str, arr.length);
-        for (int i = 0; i < arr.length; i++) {
+        final int len = arr.length;
+        System.out.printf("%s[%d] = { ", str, len);
+        for (int i = 0; i < len; i++) {
             System.out.printf("%+.3f ", arr[i]);
         }
         System.out.printf("}%n");
