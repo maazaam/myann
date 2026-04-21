@@ -2,7 +2,7 @@ package com.maaza.myann.calc;
 
 public final class BceCalculator implements Calculator {
 
-    private static final float EPS = 1e-7f;
+    private static final float EPS = 1.0e-7f;
 
     @Override
     public final float loss(final float[] arr1, final float[] arr2) {
