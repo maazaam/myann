@@ -3,6 +3,7 @@ package com.maaza.myann;
 import com.maaza.myann.acti.Activators;
 import com.maaza.myann.calc.Calculators;
 import com.maaza.myann.init.Initializers;
+import com.maaza.myann.opti.Optimizers;
 import com.maaza.myann.util.Utils;
 
 public final class Test {
@@ -103,10 +104,26 @@ public final class Test {
         Utils.print("bce-grad", arr3);
     }
 
+    private static final void opti() {
+        Utils.print("opti");
+        final int size = 4;
+        final float rate = 0.1f;
+        final float beta0 = 0.1f;
+        final float beta1 = 0.1f;
+        final float beta2 = 0.1f;
+        final float[] arr1 = { 0.1f, 0.2f, 0.3f, 0.4f };
+        final float[] arr2 = { 0.5f, 0.6f, 0.7f, 0.8f };
+        Optimizers.mntm(size, rate, beta0).step(arr1, arr2);
+        Utils.print("mntm", arr1);
+        Optimizers.adam(size, rate, beta1, beta2).step(arr1, arr2);
+        Utils.print("adam", arr1);
+    }
+
     public static final void main(final String[] args) {
         util();
         init();
         acti();
         calc();
+        opti();
     }
 }
