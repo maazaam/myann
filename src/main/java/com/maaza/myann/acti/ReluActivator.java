@@ -4,7 +4,7 @@ public final class ReluActivator implements Activator {
 
     @Override
     public final float acti(final float val) {
-        return val > 0.0f ? val : 0.0f;
+        return Math.max(0.0f, val);
     }
 
     @Override
