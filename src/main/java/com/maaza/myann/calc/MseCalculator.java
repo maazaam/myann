@@ -7,7 +7,7 @@ public final class MseCalculator implements Calculator {
         final int len = arr1.length;
         float sum = 0.0f;
         for (int i = 0; i < len; i++) {
-            final float dif = arr2[i] - arr1[i];
+            final float dif = arr1[i] - arr2[i];
             sum += dif * dif;
         }
         return sum / len;
