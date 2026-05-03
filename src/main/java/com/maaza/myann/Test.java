@@ -1,8 +1,12 @@
 package com.maaza.myann;
 
+import com.maaza.myann.acti.Activator;
 import com.maaza.myann.acti.Activators;
+import com.maaza.myann.calc.Calculator;
 import com.maaza.myann.calc.Calculators;
+import com.maaza.myann.init.Initializer;
 import com.maaza.myann.init.Initializers;
+import com.maaza.myann.opti.Optimizer;
 import com.maaza.myann.opti.Optimizers;
 import com.maaza.myann.util.Utils;
 
@@ -46,26 +50,32 @@ public final class Test {
 		final float[] arr1 = new float[len];
 		final float[] arr2 = new float[row * col];
 
-		Initializers.fill(val).init(arr1);
+		Initializer fill = Initializers.fill(val);
+		fill.init(arr1);
 		Utils.print("fill", arr1);
 
-		Initializers.copy(arr).init(arr1);
+		Initializer copy = Initializers.copy(arr);
+		copy.init(arr1);
 		Utils.print("copy", arr1);
 
-		Initializers.rndu(min, max).init(arr1);
+		Initializer rndu = Initializers.rndu(min, max);
+		rndu.init(arr1);
 		Utils.print("rndu", arr1);
 
-		Initializers.rndn(avg, sdv).init(arr1);
+		Initializer rndn = Initializers.rndn(avg, sdv);
+		rndn.init(arr1);
 		Utils.print("rndn", arr1);
 
 		Utils.print("xavi");
-		Initializers.xavi(row, col).init(arr2);
+		Initializer xavi = Initializers.xavi(row, col);
+		xavi.init(arr2);
 		Utils.print("val", val1);
 		Utils.print("min", Utils.min(arr2));
 		Utils.print("max", Utils.max(arr2));
 
 		Utils.print("kaim");
-		Initializers.kaim(row).init(arr2);
+		Initializer kaim = Initializers.kaim(row);
+		kaim.init(arr2);
 		Utils.print("val", val2);
 		Utils.print("avg", Utils.avg(arr2));
 		Utils.print("sdv", Utils.sdv(arr2));
@@ -84,37 +94,42 @@ public final class Test {
 		final float[] arr1 = new float[len];
 		final float[] arr2 = new float[len];
 
-		Initializers.rndu(min, max).init(arr);
+		Initializer rndu = Initializers.rndu(min, max);
+		rndu.init(arr);
 
 		Utils.print("arr", arr);
 
+		Activator lelu = Activators.lelu();
 		for (int i = 0; i < len; i++) {
-			arr1[i] = Activators.lelu().acti(arr[i]);
-			arr2[i] = Activators.lelu().deri(arr[i]);
+			arr1[i] = lelu.acti(arr[i]);
+			arr2[i] = lelu.deri(arr[i]);
 		}
 
 		Utils.print("lelu-acti", arr1);
 		Utils.print("lelu-deri", arr2);
 
+		Activator relu = Activators.relu();
 		for (int i = 0; i < len; i++) {
-			arr1[i] = Activators.relu().acti(arr[i]);
-			arr2[i] = Activators.relu().deri(arr[i]);
+			arr1[i] = relu.acti(arr[i]);
+			arr2[i] = relu.deri(arr[i]);
 		}
 
 		Utils.print("relu-acti", arr1);
 		Utils.print("relu-deri", arr2);
 
+		Activator sigm = Activators.sigm();
 		for (int i = 0; i < len; i++) {
-			arr1[i] = Activators.sigm().acti(arr[i]);
-			arr2[i] = Activators.sigm().deri(arr[i]);
+			arr1[i] = sigm.acti(arr[i]);
+			arr2[i] = sigm.deri(arr[i]);
 		}
 
 		Utils.print("sigm-acti", arr1);
 		Utils.print("sigm-deri", arr2);
 
+		Activator tanh = Activators.tanh();
 		for (int i = 0; i < len; i++) {
-			arr1[i] = Activators.tanh().acti(arr[i]);
-			arr2[i] = Activators.tanh().deri(arr[i]);
+			arr1[i] = tanh.acti(arr[i]);
+			arr2[i] = tanh.deri(arr[i]);
 		}
 
 		Utils.print("tanh-acti", arr1);
@@ -134,18 +149,21 @@ public final class Test {
 		final float[] arr2 = new float[len];
 		final float[] arr3 = new float[len];
 
-		Initializers.rndu(min, max).init(arr1);
-		Initializers.rndu(min, max).init(arr2);
+		Initializer rndu = Initializers.rndu(min, max);
+		rndu.init(arr1);
+		rndu.init(arr2);
 
 		Utils.print("arr1", arr1);
 		Utils.print("arr2", arr2);
 
-		Utils.print("mse-loss", Calculators.mse().loss(arr1, arr2));
-		Calculators.mse().grad(arr1, arr2, arr3);
+		Calculator mse = Calculators.mse();
+		Utils.print("mse-loss", mse.loss(arr1, arr2));
+		mse.grad(arr1, arr2, arr3);
 		Utils.print("mse-grad", arr3);
 
-		Utils.print("bce-loss", Calculators.bce().loss(arr1, arr2));
-		Calculators.bce().grad(arr1, arr2, arr3);
+		Calculator bce = Calculators.bce();
+		Utils.print("bce-loss", bce.loss(arr1, arr2));
+		bce.grad(arr1, arr2, arr3);
 		Utils.print("bce-grad", arr3);
 
 	}
@@ -168,20 +186,25 @@ public final class Test {
 		final float[] arr3 = new float[len];
 		final float[] arr4 = new float[len];
 
-		Initializers.rndu(min, max).init(arr1);
-		Initializers.rndu(min, max).init(arr2);
-		Initializers.rndu(min, max).init(arr3);
-		Initializers.rndu(min, max).init(arr4);
+		Initializer rndu = Initializers.rndu(min, max);
+		rndu.init(arr1);
+		rndu.init(arr2);
+		rndu.init(arr3);
+		rndu.init(arr4);
 
 		Utils.print("arr1", arr1);
 		Utils.print("arr2", arr2);
 		Utils.print("arr3", arr3);
 		Utils.print("arr4", arr4);
 
-		Optimizers.mntm(rate0, beta0).step(arr1, arr2);
+		Optimizer mntm = Optimizers.mntm(rate0, beta0);
+		mntm.next();
+		mntm.step(arr1, arr2);
 		Utils.print("mntm", arr1);
 
-		Optimizers.adam(rate1, beta1, beta2).step(arr3, arr4);
+		Optimizer adam = Optimizers.adam(rate1, beta1, beta2);
+		adam.next();
+		adam.step(arr3, arr4);
 		Utils.print("adam", arr3);
 
 	}
