@@ -18,6 +18,10 @@ public final class MntmOptimizer implements Optimizer {
 	}
 
 	@Override
+	public final void next() {
+	}
+
+	@Override
 	public final void step(final float[] arr1, final float[] arr2) {
 		final int len = arr1.length;
 		final float[] v = this.vm.computeIfAbsent(arr1, x -> new float[len]);
